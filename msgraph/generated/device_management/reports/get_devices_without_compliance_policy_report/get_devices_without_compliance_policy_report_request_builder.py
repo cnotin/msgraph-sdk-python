@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import get_devices_without_compliance_policy_report_post_request_body
-    from ....models.o_data_errors import o_data_error
+    from ....models.o_data_errors.o_data_error import ODataError
+    from .get_devices_without_compliance_policy_report_post_request_body import GetDevicesWithoutCompliancePolicyReportPostRequestBody
 
 class GetDevicesWithoutCompliancePolicyReportRequestBuilder():
     """
@@ -35,7 +35,7 @@ class GetDevicesWithoutCompliancePolicyReportRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_devices_without_compliance_policy_report_post_request_body.GetDevicesWithoutCompliancePolicyReportPostRequestBody] = None, request_configuration: Optional[GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
+    async def post(self,body: Optional[GetDevicesWithoutCompliancePolicyReportPostRequestBody] = None, request_configuration: Optional[GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Invoke action getDevicesWithoutCompliancePolicyReport
         Args:
@@ -48,17 +48,17 @@ class GetDevicesWithoutCompliancePolicyReportRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors import o_data_error
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_post_request_information(self,body: Optional[get_devices_without_compliance_policy_report_post_request_body.GetDevicesWithoutCompliancePolicyReportPostRequestBody] = None, request_configuration: Optional[GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetDevicesWithoutCompliancePolicyReportPostRequestBody] = None, request_configuration: Optional[GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action getDevicesWithoutCompliancePolicyReport
         Args:

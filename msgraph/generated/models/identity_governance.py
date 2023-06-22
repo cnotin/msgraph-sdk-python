@@ -4,7 +4,10 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_review_set, app_consent_approval_route, entitlement_management, terms_of_use_container
+    from .access_review_set import AccessReviewSet
+    from .app_consent_approval_route import AppConsentApprovalRoute
+    from .entitlement_management import EntitlementManagement
+    from .terms_of_use_container import TermsOfUseContainer
 
 @dataclass
 class IdentityGovernance(AdditionalDataHolder, Parsable):
@@ -12,15 +15,15 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
 
     # The accessReviews property
-    access_reviews: Optional[access_review_set.AccessReviewSet] = None
+    access_reviews: Optional[AccessReviewSet] = None
     # The appConsent property
-    app_consent: Optional[app_consent_approval_route.AppConsentApprovalRoute] = None
+    app_consent: Optional[AppConsentApprovalRoute] = None
     # The entitlementManagement property
-    entitlement_management: Optional[entitlement_management.EntitlementManagement] = None
+    entitlement_management: Optional[EntitlementManagement] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The termsOfUse property
-    terms_of_use: Optional[terms_of_use_container.TermsOfUseContainer] = None
+    terms_of_use: Optional[TermsOfUseContainer] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentityGovernance:
@@ -39,16 +42,22 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_review_set, app_consent_approval_route, entitlement_management, terms_of_use_container
+        from .access_review_set import AccessReviewSet
+        from .app_consent_approval_route import AppConsentApprovalRoute
+        from .entitlement_management import EntitlementManagement
+        from .terms_of_use_container import TermsOfUseContainer
 
-        from . import access_review_set, app_consent_approval_route, entitlement_management, terms_of_use_container
+        from .access_review_set import AccessReviewSet
+        from .app_consent_approval_route import AppConsentApprovalRoute
+        from .entitlement_management import EntitlementManagement
+        from .terms_of_use_container import TermsOfUseContainer
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "accessReviews": lambda n : setattr(self, 'access_reviews', n.get_object_value(access_review_set.AccessReviewSet)),
-            "appConsent": lambda n : setattr(self, 'app_consent', n.get_object_value(app_consent_approval_route.AppConsentApprovalRoute)),
-            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(entitlement_management.EntitlementManagement)),
+            "accessReviews": lambda n : setattr(self, 'access_reviews', n.get_object_value(AccessReviewSet)),
+            "appConsent": lambda n : setattr(self, 'app_consent', n.get_object_value(AppConsentApprovalRoute)),
+            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(EntitlementManagement)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "termsOfUse": lambda n : setattr(self, 'terms_of_use', n.get_object_value(terms_of_use_container.TermsOfUseContainer)),
+            "termsOfUse": lambda n : setattr(self, 'terms_of_use', n.get_object_value(TermsOfUseContainer)),
         }
         return fields
     

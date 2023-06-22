@@ -4,12 +4,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, shift_preferences
+    from .entity import Entity
+    from .shift_preferences import ShiftPreferences
 
-from . import entity
+from .entity import Entity
 
 @dataclass
-class UserSettings(entity.Entity):
+class UserSettings(Entity):
     # The contributionToContentDiscoveryAsOrganizationDisabled property
     contribution_to_content_discovery_as_organization_disabled: Optional[bool] = None
     # The contributionToContentDiscoveryDisabled property
@@ -17,7 +18,7 @@ class UserSettings(entity.Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The shiftPreferences property
-    shift_preferences: Optional[shift_preferences.ShiftPreferences] = None
+    shift_preferences: Optional[ShiftPreferences] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserSettings:
@@ -36,14 +37,16 @@ class UserSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, shift_preferences
+        from .entity import Entity
+        from .shift_preferences import ShiftPreferences
 
-        from . import entity, shift_preferences
+        from .entity import Entity
+        from .shift_preferences import ShiftPreferences
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contributionToContentDiscoveryAsOrganizationDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
             "contributionToContentDiscoveryDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),
-            "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(shift_preferences.ShiftPreferences)),
+            "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(ShiftPreferences)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

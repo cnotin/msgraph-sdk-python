@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models import mobile_app_assignment
-    from ......models.o_data_errors import o_data_error
+    from ......models.mobile_app_assignment import MobileAppAssignment
+    from ......models.o_data_errors.o_data_error import ODataError
 
 class MobileAppAssignmentItemRequestBuilder():
     """
@@ -44,62 +44,62 @@ class MobileAppAssignmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobileAppAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_assignment.MobileAppAssignment]:
+    async def get(self,request_configuration: Optional[MobileAppAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MobileAppAssignment]:
         """
         The list of group assignments for this mobile app.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app_assignment.MobileAppAssignment]
+        Returns: Optional[MobileAppAssignment]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import mobile_app_assignment
+        from ......models.mobile_app_assignment import MobileAppAssignment
 
-        return await self.request_adapter.send_async(request_info, mobile_app_assignment.MobileAppAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileAppAssignment, error_mapping)
     
-    async def patch(self,body: Optional[mobile_app_assignment.MobileAppAssignment] = None, request_configuration: Optional[MobileAppAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app_assignment.MobileAppAssignment]:
+    async def patch(self,body: Optional[MobileAppAssignment] = None, request_configuration: Optional[MobileAppAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MobileAppAssignment]:
         """
         Update the navigation property assignments in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[mobile_app_assignment.MobileAppAssignment]
+        Returns: Optional[MobileAppAssignment]
         """
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ......models.o_data_errors import o_data_error
+        from ......models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
+            "4XX": ODataError,
+            "5XX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models import mobile_app_assignment
+        from ......models.mobile_app_assignment import MobileAppAssignment
 
-        return await self.request_adapter.send_async(request_info, mobile_app_assignment.MobileAppAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileAppAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobileAppAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -135,7 +135,7 @@ class MobileAppAssignmentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[mobile_app_assignment.MobileAppAssignment] = None, request_configuration: Optional[MobileAppAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MobileAppAssignment] = None, request_configuration: Optional[MobileAppAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property assignments in deviceAppManagement
         Args:
